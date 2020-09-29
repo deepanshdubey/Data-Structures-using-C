@@ -1,4 +1,4 @@
-//Write a program to perform deletion from LinkedList
+//Write a program to implement deletion,insertion and display LinkedList
 
 //Name-Sai Prashant Saxena
 //Roll no-02220902719
@@ -12,7 +12,7 @@ struct node
     struct node *link;
 };
 void printList(struct node *);
-struct node *insertValue(int);
+struct node *insertValue(struct node *, int);
 struct node *deleteValue(struct node *, int);
 
 int main()
@@ -47,18 +47,7 @@ askAgain:
         printf("\nEnter the value to be added\n ");
         int value;
         scanf("%d", &value);
-        if (head == NULL)
-        {
-
-            head = insertValue(value);
-            temp = head;
-        }
-        else
-        {
-
-            temp->link = insertValue(value);
-            temp = temp->link;
-        }
+        head = insertValue(head, value);
         printf("Thus the new list is");
         printList(head);
     }
@@ -80,12 +69,35 @@ askAgain:
 end:
     return 0;
 }
-struct node *insertValue(int value)
+struct node *insertValue(struct node *head, int value)
 {
+
+    struct node *temp = head;
     struct node *new = (struct node *)malloc(sizeof(struct node));
     new->info = value;
     new->link = NULL;
-    return new;
+    if (head == NULL)
+    {
+        return new;
+    }
+    if (head->info > value)
+    {
+        new->link = head;
+        head = new;
+        return head;
+    }
+    while (temp->link != NULL)
+    {
+        if (temp->link->info > value)
+        {
+            new->link = temp->link;
+            temp->link = new;
+            return head;
+        }
+        temp = temp->link;
+    }
+    temp->link = new;
+    return head;
 }
 struct node *deleteValue(struct node *head, int value)
 {
@@ -95,6 +107,10 @@ struct node *deleteValue(struct node *head, int value)
         return head;
     }
     struct node *current = head, *previous;
+    if (head->info > value)
+    {
+        current = NULL;
+    }
     if (head->info == value)
     {
         head = head->link;
@@ -105,6 +121,10 @@ struct node *deleteValue(struct node *head, int value)
     }
     while (current != NULL)
     {
+        if (current->info > value)
+        {
+            break;
+        }
         if (current->info == value)
         {
             previous->link = current->link;
