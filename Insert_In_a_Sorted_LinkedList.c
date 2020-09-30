@@ -11,12 +11,14 @@ struct node *insertValue(struct node *, int);
 int main()
 {
     int n;
+    int counter=0;
     scanf("%d", &n);
     struct node *head = (struct node *)malloc(sizeof(struct node));
     head->link=NULL;
     struct node *temp;
     for (int i = 0; i < n; i++)
     {
+        counter++;
         int value;
         scanf("%d", &value);
         if (i == 0)
@@ -43,7 +45,7 @@ int main()
         temp=temp->link;
     }
     
-
+    printf("The no. of steps took to complete the insertion was %d", counter);
     return 0;
 }
 
