@@ -34,7 +34,7 @@ int main()
     {
         printf("Why did you ran this program if you did not wanted to make a linked list\n");
         printf("Program exited");
-        goto end;
+        goto end;  //can be directly replaces with "return 0", just a suggestion to reduce 1 step.
     }
 
     int ch;
