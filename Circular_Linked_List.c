@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Structure of node :-
 struct node
 {
     int info;
