@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Structure of nodes in list :-
 struct node
 {
     int info;
